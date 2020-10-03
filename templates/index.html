@@ -1,12 +1,19 @@
 <html>
+    <head>
+        <title>Domain Tracker</title>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >
+    </head>
     <body>
         <center>
+            <h1>Domain Tracker</h1>
         <br><br>
         <form action="/domaindetails" method="POST">
-            <input type="text" name="url" placeholder="Enter domain name" required>
-            <input type="submit" value="submit">
+            <input type="text" name="url" placeholder="Enter domain name" style="width: 350px;" required>
+            <br><br>
+            <input type="submit" value="submit" class="button">
         </form>
-        <br><br>
+        
         <a href="/alldomains"> Previous Results </a>
         </center>
     </body>
