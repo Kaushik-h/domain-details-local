@@ -1,0 +1,39 @@
+*{
+    font-family: 'Open Sans', sans-serif;
+}
+input[type=text] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
+}
+.button {
+    background-color: lightskyblue;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px 1px;
+    border-radius: 8px;
+  }
+  a:link {
+    color: grey;
+    text-decoration: none;    
+    }
+
+  a:hover {
+    color:lightskyblue;
+}
+/*--------------------table------------------------*/
+th, td {
+    padding: 15px;
+    text-align: left;
+  }
+.center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+      }
