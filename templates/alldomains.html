@@ -1,14 +1,18 @@
 <html>
    <body>
     <center>
+      {% for d in result %}
       <table border = 0>
-         {% for key, value in result.items() %}
-            <tr>
-               <th> {{ key }} </th>
-               <td> {{ value }} </td>
-            </tr>
-         {% endfor %}
+         <tr><td> <img src="{{d["imageurl"]}}"> </td></tr>
+         <tr><th> Domain </th> <td> {{ d["Domain Name"] }} </td></tr>
+         <tr><th> Expires on </th> <td> {{ d["Expires on"] }} </td></tr>
+         <tr><th> Created on </th> <td> {{ d["Created on"] }} </td></tr>
+         <tr><th> Belongs to </th> <td> {{ d["Belongs to"] }} </td></tr>
+         <tr><th> Country </th> <td> {{ d["Country"] }} </td></tr>
+         <tr><th> Registrar </th> <td> {{ d["Registrar"] }} </td></tr>
+         <br><br>
       </table>
+      {% endfor %}
     </center>
    </body>
 </html>

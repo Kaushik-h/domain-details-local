@@ -1,4 +1,3 @@
-main.py
 from flask import Flask,render_template,request
 import whois
 from datetime import datetime
@@ -11,7 +10,7 @@ app = Flask(__name__)
 
 domain={}
 
-alldomains={}
+alldomains=[]
 
 def queryDomain(url):
   w = whois.whois(url)
@@ -19,6 +18,7 @@ def queryDomain(url):
       domain_name= w["domain_name"][0]
   else:
       domain_name = w["domain_name"]
+  domain['Domain Name']=domain_name
   if type(w["expiration_date"])== list:
       domain["Expires on"]= w["expiration_date"][0]
   else:
@@ -49,14 +49,15 @@ def queryDomain(url):
 
   db=firestore.Client()
   db.collection('domain').document(domain_name).set(domain)
+  domain["imageurl"]='https://storage.googleapis.com/favicon/'+domain_name
 
-  return domain,domain_name
+  return domain
 
 def allDomain():
   db = firestore.Client()
   domains = db.collection('domain').stream()
   for d in domains:
-    alldomains.update(d.to_dict())
+    alldomains.append(d.to_dict())
   return alldomains
 
 
@@ -67,11 +68,8 @@ def home():
 @app.route('/domaindetails',methods = ['POST'])
 def details():
   url=request.form['url']
-  result,dom=queryDomain(url)
-  res={}
-  res[""]=dom
-  res.update(result)
-  return render_template('domaindetails.html',result=res)
+  result=queryDomain(url)
+  return render_template('domaindetails.html',result=result)
 
 @app.route('/alldomains',methods = ['GET'])
 def listdomain():
