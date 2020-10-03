@@ -1,8 +1,13 @@
 <html>
+  <head>
+    <title>Domain Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >
+  </head>
    <body>
     <center>
       <table border = 0>
-         <tr><td> <img src="{{result["imageurl"]}}"> </td></tr>
+            <tr><td> <img src="{{result["imageurl"]}}" class="center"> </td></tr>
             <tr><th> Domain </th> <td> {{ result["Domain Name"] }} </td></tr>
             <tr><th> Expires on </th> <td> {{ result["Expires on"] }} </td></tr>
             <tr><th> Created on </th> <td> {{ result["Created on"] }} </td></tr>
