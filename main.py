@@ -8,12 +8,13 @@ import requests
 
 app = Flask(__name__)
 
-domain={}
 
-alldomains=[]
 
 def queryDomain(url):
+  domain={}
   w = whois.whois(url)
+  if w["domain_name"]==None:
+      return 'Invalid domain name'
   if type(w["domain_name"])== list:
       domain_name= w["domain_name"][0]
   else:
@@ -38,22 +39,23 @@ def queryDomain(url):
 
   url='http://'+domain_name+'/favicon.ico'
   r = requests.get(url, allow_redirects=True)
-  filename='favicons/'+domain_name+'.png'
-  open(filename, 'wb').write(r.content)
+  if r.status_code==200:
+    filename='favicons/'+domain_name+'.png'
+    open(filename, 'wb').write(r.content)
 
-  storage_client = storage.Client()
-  bucket = storage_client.bucket('favicon')
-  blob = bucket.blob(domain_name)
-  blob.upload_from_filename(filename)
-
+    storage_client = storage.Client()
+    bucket = storage_client.bucket('favicon')
+    blob = bucket.blob(domain_name)
+    blob.upload_from_filename(filename)
+    domain["imageurl"]='https://storage.googleapis.com/resize-favicon/'+domain_name
 
   db=firestore.Client()
   db.collection('domain').document(domain_name).set(domain)
-  domain["imageurl"]='https://storage.googleapis.com/favicon/'+domain_name
 
   return domain
 
 def allDomain():
+  alldomains=[]
   db = firestore.Client()
   domains = db.collection('domain').stream()
   for d in domains:
