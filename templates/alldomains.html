@@ -1,6 +1,13 @@
 <html>
+   <head>
+      <title>All Domain</title>
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >
+  </head>
    <body>
-    <center>
+    
+      <!-- <center>
+      <h1>All Visited Domains</h1>
       {% for d in result %}
       <table border = 0>
          <tr><td> <img src="{{d["imageurl"]}}"> </td></tr>
@@ -13,6 +20,31 @@
          <br><br>
       </table>
       {% endfor %}
+    </center> -->
+    <center>
+      <h1>All Visited Domains</h1>
+       <table border="0">
+          <tr>
+             <th>Logo</th>
+             <th>Domain</th>
+             <th>Expiry</th>
+             <th>Created</th>
+             <th>Owner</th>
+             <th>Country</th>
+             <th>Register</th>
+          </tr>
+         {% for d in result %}
+          <tr>
+            <td> <img src="{{d["imageurl"]}}"> </td>
+            <td> {{ d["Domain Name"] }} </td> 
+            <td> {{ d["Expires on"] }} </td>
+            <td> {{ d["Created on"] }} </td>
+            <td> {{ d["Belongs to"] }} </td>
+            <td> {{ d["Country"] }} </td>
+            <td> {{ d["Registrar"] }} </td>
+          </tr>
+         {% endfor %}
+       </table>
     </center>
    </body>
 </html>
