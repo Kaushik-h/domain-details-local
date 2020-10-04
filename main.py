@@ -40,7 +40,7 @@ def queryDomain(url):
   url='http://'+domain_name+'/favicon.ico'
   r = requests.get(url, allow_redirects=True)
   if r.status_code==200:
-    filename='favicons/'+domain_name+'.png'
+    filename='/tmp/'+domain_name+'.png'
     open(filename, 'wb').write(r.content)
 
     storage_client = storage.Client()
