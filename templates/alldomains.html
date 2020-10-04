@@ -2,26 +2,26 @@
    <head>
       <title>All Domain</title>
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Google+Sans" rel="stylesheet">
       <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >
   </head>
    <body>
     
-      <!-- <center>
-      <h1>All Visited Domains</h1>
-      {% for d in result %}
-      <table border = 0>
-         <tr><td> <img src="{{d["imageurl"]}}"> </td></tr>
-         <tr><th> Domain </th> <td> {{ d["Domain Name"] }} </td></tr>
-         <tr><th> Expires on </th> <td> {{ d["Expires on"] }} </td></tr>
-         <tr><th> Created on </th> <td> {{ d["Created on"] }} </td></tr>
-         <tr><th> Belongs to </th> <td> {{ d["Belongs to"] }} </td></tr>
-         <tr><th> Country </th> <td> {{ d["Country"] }} </td></tr>
-         <tr><th> Registrar </th> <td> {{ d["Registrar"] }} </td></tr>
+      <center>
          <br><br>
-      </table>
+      <h1>All Visited Domains</h1>
+      <br><br>
+      {% for d in result %}
+      <img src="{{d["imageurl"]}}"><br><br><br>
+             Domain:  {{ d["Domain Name"] }} <br><br>
+             Expires on <span></span> {{ d["Expires on"] }}<br><br>
+             Created on <span></span> {{ d["Created on"] }}<br><br>
+             Belongs to <span></span> {{ d["Belongs to"] }} <br><br>
+             Country: <span></span> {{ d["Country"] }} <br><br>
+             Registrar: <span></span> {{ d["Registrar"] }} <br><br><br><br><br>
       {% endfor %}
-    </center> -->
-    <center>
+    </center>
+    <!-- <center>
       <h1>All Visited Domains</h1>
        <table border="0">
           <tr>
@@ -45,6 +45,6 @@
           </tr>
          {% endfor %}
        </table>
-    </center>
+    </center> -->
    </body>
 </html>
