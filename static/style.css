@@ -1,15 +1,29 @@
+
 *{
-    font-family: 'Open Sans', sans-serif;
+  font-family: 'Google Sans', sans-serif;
 }
 input[type=text] {
     background: transparent;
     border: none;
+    text-align: center;
+    font-size: 16px;
     border-bottom: 1px solid #000000;
+    outline: none;
+    padding: 5px;
 }
+input::selection {
+  background: #FFF; /* WebKit/Blink Browsers */
+}
+input::-moz-selection {
+  background: #FFF; /* Gecko Browsers */
+}
+
+
+
 .button {
-    background-color: lightskyblue;
+    background-color: #242424;
     border: none;
-    color: white;
+    color: #eeeeee;
     padding: 10px;
     text-align: center;
     text-decoration: none;
@@ -18,19 +32,19 @@ input[type=text] {
     margin: 2px 1px;
     border-radius: 8px;
   }
-  a:link {
-    color: grey;
+  .h1
+  {
+    font-weight: 300;
+  }
+  a {
+    color:#000000;
     text-decoration: none;    
     }
 
   a:hover {
-    color:lightskyblue;
+    color:#2f6a51;
 }
-/*--------------------table------------------------*/
-th, td {
-    padding: 15px;
-    text-align: left;
-  }
+
 .center {
         display: block;
         margin-left: auto;
