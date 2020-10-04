@@ -2,19 +2,21 @@
   <head>
     <title>Domain Details</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >
   </head>
    <body>
     <center>
-      <table border = 0>
-            <tr><td> <img src="{{result["imageurl"]}}" class="center"> </td></tr>
-            <tr><th> Domain </th> <td> {{ result["Domain Name"] }} </td></tr>
-            <tr><th> Expires on </th> <td> {{ result["Expires on"] }} </td></tr>
-            <tr><th> Created on </th> <td> {{ result["Created on"] }} </td></tr>
-            <tr><th> Belongs to </th> <td> {{ result["Belongs to"] }} </td></tr>
-            <tr><th> Country </th> <td> {{ result["Country"] }} </td></tr>
-            <tr><th> Registrar </th> <td> {{ result["Registrar"] }} </td></tr>
-      </table>
+      <br><br><br>
+      <br><br><br>
+      <br><br><br><br>
+      <img src="{{result["imageurl"]}}"><br><br><br>
+             Domain:  {{ result["Domain Name"] }} <br><br>
+             Expires on <span></span> {{ result["Expires on"] }}<br><br>
+             Created on <span></span> {{ result["Created on"] }}<br><br>
+             Belongs to <span></span> {{ result["Belongs to"] }} <br><br>
+             Country: <span></span> {{ result["Country"] }} <br><br>
+             Registrar: <span></span> {{ result["Registrar"] }} <br><br>
     </center>
    </body>
 </html>
