@@ -36,18 +36,21 @@ def queryDomain(url):
   domain["Expires on"]=domain["Expires on"].strftime("%B %m %Y at %H:%M %p")
   domain["Created on"]=domain["Created on"].strftime("%B %m %Y at %H:%M %p")
 
+  try:
+    url='http://'+domain_name+'/favicon.ico'
+    r = requests.get(url, allow_redirects=True)
+    if r.status_code==200:
+        filename='/tmp/'+domain_name+'.png'
+        open(filename, 'wb').write(r.content)
 
-  url='http://'+domain_name+'/favicon.ico'
-  r = requests.get(url, allow_redirects=True)
-  if r.status_code==200:
-    filename='/tmp/'+domain_name+'.png'
-    open(filename, 'wb').write(r.content)
+        storage_client = storage.Client()
+        bucket = storage_client.bucket('favicon')
+        blob = bucket.blob(domain_name)
+        blob.upload_from_filename(filename)
+        domain["imageurl"]='https://storage.googleapis.com/resize-favicon/'+domain_name
 
-    storage_client = storage.Client()
-    bucket = storage_client.bucket('favicon')
-    blob = bucket.blob(domain_name)
-    blob.upload_from_filename(filename)
-    domain["imageurl"]='https://storage.googleapis.com/resize-favicon/'+domain_name
+  except Exception as e:
+      print(Exception)
 
   db=firestore.Client()
   db.collection('domain').document(domain_name).set(domain)
