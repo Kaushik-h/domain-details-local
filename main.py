@@ -1,8 +1,8 @@
 from flask import Flask,render_template,request
 import whois
 from datetime import datetime
-from google.cloud import firestore
-from google.cloud import storage
+# from google.cloud import firestore
+# from google.cloud import storage
 import requests
 
 
@@ -43,27 +43,27 @@ def queryDomain(url):
         filename='/tmp/'+domain_name+'.png'
         open(filename, 'wb').write(r.content)
 
-        storage_client = storage.Client()
-        bucket = storage_client.bucket('favicon')
-        blob = bucket.blob(domain_name)
-        blob.upload_from_filename(filename)
+#         storage_client = storage.Client()
+#         bucket = storage_client.bucket('favicon')
+#         blob = bucket.blob(domain_name)
+#         blob.upload_from_filename(filename)
         domain["imageurl"]='https://storage.googleapis.com/resize-favicon/'+domain_name
 
   except Exception as e:
       print(Exception)
 
-  db=firestore.Client()
-  db.collection('domain').document(domain_name).set(domain)
+#   db=firestore.Client()
+#   db.collection('domain').document(domain_name).set(domain)
 
   return domain
 
-def allDomain():
-  alldomains=[]
-  db = firestore.Client()
-  domains = db.collection('domain').stream()
-  for d in domains:
-    alldomains.append(d.to_dict())
-  return alldomains
+# def allDomain():
+#   alldomains=[]
+#   db = firestore.Client()
+#   domains = db.collection('domain').stream()
+#   for d in domains:
+#     alldomains.append(d.to_dict())
+#   return alldomains
 
 
 @app.route('/')
@@ -76,10 +76,10 @@ def details():
   result=queryDomain(url)
   return render_template('domaindetails.html',result=result)
 
-@app.route('/alldomains',methods = ['GET'])
-def listdomain():
-  result=allDomain()
-  return render_template('alldomains.html',result=result)
+# @app.route('/alldomains',methods = ['GET'])
+# def listdomain():
+#   result=allDomain()
+#   return render_template('alldomains.html',result=result)
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0')
