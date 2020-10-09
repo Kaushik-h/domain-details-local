@@ -1,4 +1,2 @@
 Flask==1.1.2
-google-cloud-firestore==1.9.0
-google-cloud-storage==1.31.2
 python-whois==0.7.3
